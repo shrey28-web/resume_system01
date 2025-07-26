@@ -1,0 +1,162 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Resume & Career Analyzer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f9;
+    }
+
+    header {
+      background-color: #2c3e50;
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #34495e;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .login-button {
+      margin-left: auto;
+      background-color: #1abc9c;
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    .nav-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .left-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    /* Resume Upload Styles */
+    #upload {
+      background-color: #ffffff;
+      padding: 30px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    #upload h2 {
+      color: #2c3e50;
+    }
+
+    input[type="file"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    button[type="submit"] {
+      background-color: #2c3e50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #1a252f;
+    }
+
+    #uploadStatus {
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>AI Resume & Career Analyzer Platform</h1>
+  </header>
+
+  <nav>
+    <div class="nav-container">
+      <div class="left-links">
+        <a href="#upload">Upload Resume</a>
+        <a href="#ai-resume">AI Resume Builder</a>
+        <a href="#career">Career Suggestions</a>
+      </div>
+      <a href="login.html" class="login-button">Login</a>
+    </div>
+  </nav>
+
+  <section>
+    <h2>Welcome!</h2>
+    <p>This platform helps you analyze your resume and get personalized career suggestions.</p>
+  </section>
+
+  <section id="upload">
+    <h2>📤 Upload Your Resume</h2>
+    <p>Please upload your resume (PDF, DOC, or DOCX). We’ll analyze it and provide personalized career suggestions.</p>
+
+    <form id="resumeForm">
+      <input type="file" id="resumeFile" name="resumeFile" accept=".pdf,.doc,.docx" required>
+      <br><br>
+      <button type="submit">Analyze Resume</button>
+    </form>
+
+    <p id="uploadStatus"></p>
+  </section>
+
+  <script>
+    document.getElementById("resumeForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const fileInput = document.getElementById("resumeFile");
+      if (fileInput.files.length > 0) {
+        document.getElementById("uploadStatus").textContent = "✅ Resume uploaded successfully (demo only).";
+      } else {
+        document.getElementById("uploadStatus").textContent = "⚠️ Please select a file.";
+      }
+    });
+  </script>
+
+</body>
+</html>
