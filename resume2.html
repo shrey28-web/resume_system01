@@ -1,162 +1,132 @@
-<!-- index.html -->
+<!-- login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI Resume & Career Analyzer</title>
+  <title>Login - AI Resume Analyzer</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f6f9;
-    }
-
-    header {
-      background-color: #2c3e50;
-      padding: 20px;
-      color: white;
-      text-align: center;
-    }
-
-    nav {
-      background-color: #34495e;
-      padding: 10px;
+      background: #ecf0f1;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-wrap: wrap;
+      height: 100vh;
+      margin: 0;
     }
 
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .login-button {
-      margin-left: auto;
-      background-color: #1abc9c;
-      color: white;
-      padding: 8px 15px;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-    }
-
-    section {
-      padding: 20px;
-    }
-
-    .nav-container {
-      width: 100%;
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .left-links {
-      display: flex;
-      gap: 15px;
-    }
-
-    /* Resume Upload Styles */
-    #upload {
-      background-color: #ffffff;
+    .login-container {
+      background: white;
       padding: 30px;
-      margin: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    }
-
-    #upload h2 {
-      color: #2c3e50;
-    }
-
-    input[type="file"] {
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 400px;
     }
 
-    button[type="submit"] {
-      background-color: #2c3e50;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 10px;
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #2c3e50;
     }
 
-    button[type="submit"]:hover {
-      background-color: #1a252f;
-    }
-
-    #uploadStatus {
-      margin-top: 15px;
-      color: green;
+    label {
+      display: block;
+      margin: 10px 0 5px;
       font-weight: bold;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1a252f;
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .back-link a {
+      text-decoration: none;
+      color: #2c3e50;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      display: none;
+    }
+
+    .success {
+      color: green;
+      font-size: 14px;
+      display: none;
     }
   </style>
 </head>
 <body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" placeholder="you@example.com" required>
 
-  <header>
-    <h1>AI Resume & Career Analyzer Platform</h1>
-  </header>
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required>
 
-  <nav>
-    <div class="nav-container">
-      <div class="left-links">
-        <a href="#upload">Upload Resume</a>
-        <a href="#ai-resume">AI Resume Builder</a>
-        <a href="#career">Career Suggestions</a>
-      </div>
-      <a href="login.html" class="login-button">Login</a>
-    </div>
-  </nav>
+      <button type="submit">Login</button>
 
-  <section>
-    <h2>Welcome!</h2>
-    <p>This platform helps you analyze your resume and get personalized career suggestions.</p>
-  </section>
-
-  <section id="upload">
-    <h2>📤 Upload Your Resume</h2>
-    <p>Please upload your resume (PDF, DOC, or DOCX). We’ll analyze it and provide personalized career suggestions.</p>
-
-    <form id="resumeForm">
-      <input type="file" id="resumeFile" name="resumeFile" accept=".pdf,.doc,.docx" required>
-      <br><br>
-      <button type="submit">Analyze Resume</button>
+      <p id="errorMessage" class="error">⚠️ Invalid email or password.</p>
+      <p id="successMessage" class="success">✅ Login successful (demo only).</p>
     </form>
 
-    <p id="uploadStatus"></p>
-  </section>
+    <div class="back-link">
+      <a href="index.html">← Back to Home</a>
+    </div>
+  </div>
 
   <script>
-    document.getElementById("resumeForm").addEventListener("submit", function(e) {
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
       e.preventDefault();
-      const fileInput = document.getElementById("resumeFile");
-      if (fileInput.files.length > 0) {
-        document.getElementById("uploadStatus").textContent = "✅ Resume uploaded successfully (demo only).";
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const error = document.getElementById("errorMessage");
+      const success = document.getElementById("successMessage");
+
+      // Simulated demo check (for real use, connect to backend)
+      if (email === "user@example.com" && password === "password123") {
+        error.style.display = "none";
+        success.style.display = "block";
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 1500);
       } else {
-        document.getElementById("uploadStatus").textContent = "⚠️ Please select a file.";
+        success.style.display = "none";
+        error.style.display = "block";
       }
     });
   </script>
-
 </body>
 </html>
